@@ -1,6 +1,6 @@
-const _ohanhi$elm_native_ui$Native_NativeUi_AsyncStorage = function () {
-  const { AsyncStorage } = require("react-native");
-  const unit = { ctor: "_Tuple0" };
+const _ohanhi$elm_native_ui$Native_NativeUi_AsyncStorage = (function() {
+  const { AsyncStorage } = require('react-native');
+  const unit = { ctor: '_Tuple0' };
   const toArray = _elm_lang$core$Native_List.toArray;
   const fromArray = _elm_lang$core$Native_List.fromArray;
 
@@ -75,6 +75,6 @@ const _ohanhi$elm_native_ui$Native_NativeUi_AsyncStorage = function () {
     setItem: F2(setItem),
     getItem: getItem,
     removeItem: removeItem,
-    multiGet: multiGet,
+    multiGet: multiGet
   };
-}();
+})();

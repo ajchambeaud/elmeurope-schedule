@@ -1,5 +1,4 @@
-var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
-
+var _ohanhi$elm_native_ui$Native_NativeUi = (function() {
   var ReactNative = require('react-native');
   var React = require('react');
   var toArray = _elm_lang$core$Native_List.toArray;
@@ -22,8 +21,8 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
   function ref(callback) {
     return {
       type: 'ref',
-      callback: callback,
-    }
+      callback: callback
+    };
   }
   /**
    * Declares a style attribute for a node, expressed as an inline styles for
@@ -51,7 +50,7 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
     return {
       type: 'renderProp',
       propName: propName,
-      value: value,
+      value: value
     };
   }
 
@@ -96,7 +95,7 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
    * tree-building and can allow for optimizations later on as well.
    */
   function voidNode(tagName) {
-    return function (factList) {
+    return function(factList) {
       return {
         type: 'component',
         tagName: tagName,
@@ -173,7 +172,7 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
   function makeRenderNodePropHandler(fact, eventNode, key) {
     function handler(props) {
       return renderTree(handler.component(props), eventNode, key);
-    };
+    }
 
     handler.component = fact.value;
 
@@ -191,7 +190,7 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
       var decodedProps = decodeValue(handler.decoder, props);
 
       return renderTree(handler.component(decodedProps), eventNode, key);
-    };
+    }
 
     handler.component = fact.value;
     handler.decoder = fact.decoder;
@@ -227,9 +226,7 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
     var tagger = node.tagger;
 
     while (subNode.type === 'tagger') {
-      typeof tagger !== 'object' ?
-        tagger = [tagger, subNode.tagger] :
-        tagger.push(subNode.tagger);
+      typeof tagger !== 'object' ? tagger = [tagger, subNode.tagger] : tagger.push(subNode.tagger);
 
       subNode = subNode.node;
     }
@@ -279,7 +276,7 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
       }
     }
 
-    if(!finalProps.key) {
+    if (!finalProps.key) {
       finalProps.key = 'elm-native-ui-auto-added-' + key;
     }
 
@@ -292,7 +289,9 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
       return React.createElement(ReactNative[node.tagName], finalProps);
     } else {
       if (!node.nativeComponent) {
-          throw Error('Unable to find a node called ' + node.tagName + ' in ReactNative. Try defining it as a customNode');
+        throw Error(
+          'Unable to find a node called ' + node.tagName + ' in ReactNative. Try defining it as a customNode'
+        );
       }
 
       return React.createElement(node.nativeComponent, finalProps);
@@ -341,7 +340,7 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
           this.renderer
         );
 
-        if (typeof this.onAppReady === "function") {
+        if (typeof this.onAppReady === 'function') {
           this.onAppReady(this._app);
         }
       },
@@ -359,9 +358,9 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
       render: function render() {
         // There won't be a model to render right away so we'll check that it
         // exists before trying to call the view function
-        return typeof this.state.model !== 'undefined' ?
-          renderTree(impl.view(this.state.model), this.eventNode, 0) :
-          null;
+        return typeof this.state.model !== 'undefined'
+          ? renderTree(impl.view(this.state.model), this.eventNode, 0)
+          : null;
       }
     });
   }
@@ -394,19 +393,21 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
         object.start = function start(onAppReady, flags = {}) {
           if (typeof flagDecoder === 'undefined') {
             throw new Error(
-              'Are you trying to sneak a Never value into Elm? Trickster!\n'
-              + 'It looks like ' + moduleName + '.main is defined with `programWithFlags` but has type `Program Never`.\n'
-              + 'Use `program` instead if you do not want flags.'
+              'Are you trying to sneak a Never value into Elm? Trickster!\n' +
+                'It looks like ' +
+                moduleName +
+                '.main is defined with `programWithFlags` but has type `Program Never`.\n' +
+                'Use `program` instead if you do not want flags.'
             );
           }
           var result = A2(_elm_lang$core$Native_Json.run, flagDecoder, flags);
-          if (result.ctor === 'Err')
-          {
-          	throw new Error(
-          		moduleName + '.start(...) was called with an unexpected argument.\n'
-          		+ 'I tried to convert it to an Elm value, but ran into this problem:\n\n'
-          		+ result._0
-          	);
+          if (result.ctor === 'Err') {
+            throw new Error(
+              moduleName +
+                '.start(...) was called with an unexpected argument.\n' +
+                'I tried to convert it to an Elm value, but ran into this problem:\n\n' +
+                result._0
+            );
           }
           return makeComponent(impl, onAppReady, result._0);
         };
@@ -455,4 +456,4 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
     encodeDate: identity,
     parseDate: parseDate
   };
-}());
+})();

@@ -8,6 +8,7 @@ import NativeUi.Properties exposing (horizontal, pagingEnabled)
 import NativeApi.Dimensions exposing (window)
 import App.Types exposing (..)
 import RemoteData exposing (..)
+import SpinKit exposing (..)
 
 
 breakTimeView : BreakTime -> Node Msg
@@ -16,7 +17,6 @@ breakTimeView item =
         [ Ui.style
             [ Style.alignItems "center"
             , Style.justifyContent "space-around"
-            , Style.backgroundColor "green"
             , Style.width window.width
             ]
         ]
@@ -38,7 +38,6 @@ talkView talk =
         [ Ui.style
             [ Style.alignItems "center"
             , Style.justifyContent "space-around"
-            , Style.backgroundColor "yellow"
             , Style.width window.width
             ]
         ]
@@ -70,7 +69,6 @@ header =
                 [ Style.alignItems "flex-start"
                 , Style.backgroundColor "black"
                 , Style.flexDirection "row"
-                , Style.alignItems "flex-start"
                 , Style.justifyContent "space-between"
                 , Style.marginTop 30
                 , Style.padding 5
@@ -89,13 +87,13 @@ header =
                 [ Ui.style
                     [ Style.alignItems "center"
                     , Style.justifyContent "space-around"
+                    , Style.flex 1
                     , Style.alignSelf "stretch"
                     ]
                 ]
                 [ text
                     [ Ui.style
-                        [ Style.textAlign "center"
-                        , Style.color "#63b4c9"
+                        [ Style.color "#63b4c9"
                         , Style.fontSize 24
                         ]
                     ]
@@ -131,11 +129,16 @@ loadingView =
     Elements.view
         [ Ui.style
             [ Style.alignItems "center"
-            , Style.backgroundColor "yellow"
             , Style.width window.width
             ]
         ]
-        [ text [] [ Ui.string "Loading" ]
+        [ spinner
+            [ spinnerType Bounce
+            , isVisible True
+            , color "black"
+            , size 80
+            ]
+            []
         ]
 
 

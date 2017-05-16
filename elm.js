@@ -7011,8 +7011,7 @@ var _ohanhi$elm_native_ui$App_State$update = F2(
 	});
 var _ohanhi$elm_native_ui$App_State$model = {activities: _krisajenkins$remotedata$RemoteData$NotAsked};
 
-var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
-
+var _ohanhi$elm_native_ui$Native_NativeUi = (function() {
   var ReactNative = require('react-native');
   var React = require('react');
   var toArray = _elm_lang$core$Native_List.toArray;
@@ -7035,8 +7034,8 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
   function ref(callback) {
     return {
       type: 'ref',
-      callback: callback,
-    }
+      callback: callback
+    };
   }
   /**
    * Declares a style attribute for a node, expressed as an inline styles for
@@ -7064,7 +7063,7 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
     return {
       type: 'renderProp',
       propName: propName,
-      value: value,
+      value: value
     };
   }
 
@@ -7109,7 +7108,7 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
    * tree-building and can allow for optimizations later on as well.
    */
   function voidNode(tagName) {
-    return function (factList) {
+    return function(factList) {
       return {
         type: 'component',
         tagName: tagName,
@@ -7186,7 +7185,7 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
   function makeRenderNodePropHandler(fact, eventNode, key) {
     function handler(props) {
       return renderTree(handler.component(props), eventNode, key);
-    };
+    }
 
     handler.component = fact.value;
 
@@ -7204,7 +7203,7 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
       var decodedProps = decodeValue(handler.decoder, props);
 
       return renderTree(handler.component(decodedProps), eventNode, key);
-    };
+    }
 
     handler.component = fact.value;
     handler.decoder = fact.decoder;
@@ -7240,9 +7239,7 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
     var tagger = node.tagger;
 
     while (subNode.type === 'tagger') {
-      typeof tagger !== 'object' ?
-        tagger = [tagger, subNode.tagger] :
-        tagger.push(subNode.tagger);
+      typeof tagger !== 'object' ? tagger = [tagger, subNode.tagger] : tagger.push(subNode.tagger);
 
       subNode = subNode.node;
     }
@@ -7292,7 +7289,7 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
       }
     }
 
-    if(!finalProps.key) {
+    if (!finalProps.key) {
       finalProps.key = 'elm-native-ui-auto-added-' + key;
     }
 
@@ -7305,7 +7302,9 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
       return React.createElement(ReactNative[node.tagName], finalProps);
     } else {
       if (!node.nativeComponent) {
-          throw Error('Unable to find a node called ' + node.tagName + ' in ReactNative. Try defining it as a customNode');
+        throw Error(
+          'Unable to find a node called ' + node.tagName + ' in ReactNative. Try defining it as a customNode'
+        );
       }
 
       return React.createElement(node.nativeComponent, finalProps);
@@ -7354,7 +7353,7 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
           this.renderer
         );
 
-        if (typeof this.onAppReady === "function") {
+        if (typeof this.onAppReady === 'function') {
           this.onAppReady(this._app);
         }
       },
@@ -7372,9 +7371,9 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
       render: function render() {
         // There won't be a model to render right away so we'll check that it
         // exists before trying to call the view function
-        return typeof this.state.model !== 'undefined' ?
-          renderTree(impl.view(this.state.model), this.eventNode, 0) :
-          null;
+        return typeof this.state.model !== 'undefined'
+          ? renderTree(impl.view(this.state.model), this.eventNode, 0)
+          : null;
       }
     });
   }
@@ -7407,19 +7406,21 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
         object.start = function start(onAppReady, flags = {}) {
           if (typeof flagDecoder === 'undefined') {
             throw new Error(
-              'Are you trying to sneak a Never value into Elm? Trickster!\n'
-              + 'It looks like ' + moduleName + '.main is defined with `programWithFlags` but has type `Program Never`.\n'
-              + 'Use `program` instead if you do not want flags.'
+              'Are you trying to sneak a Never value into Elm? Trickster!\n' +
+                'It looks like ' +
+                moduleName +
+                '.main is defined with `programWithFlags` but has type `Program Never`.\n' +
+                'Use `program` instead if you do not want flags.'
             );
           }
           var result = A2(_elm_lang$core$Native_Json.run, flagDecoder, flags);
-          if (result.ctor === 'Err')
-          {
-          	throw new Error(
-          		moduleName + '.start(...) was called with an unexpected argument.\n'
-          		+ 'I tried to convert it to an Elm value, but ran into this problem:\n\n'
-          		+ result._0
-          	);
+          if (result.ctor === 'Err') {
+            throw new Error(
+              moduleName +
+                '.start(...) was called with an unexpected argument.\n' +
+                'I tried to convert it to an Elm value, but ran into this problem:\n\n' +
+                result._0
+            );
           }
           return makeComponent(impl, onAppReady, result._0);
         };
@@ -7468,7 +7469,7 @@ var _ohanhi$elm_native_ui$Native_NativeUi = (function () {
     encodeDate: identity,
     parseDate: parseDate
   };
-}());
+})();
 
 var _ohanhi$elm_native_ui$NativeUi_Style$defaultTransform = {perspective: _elm_lang$core$Maybe$Nothing, rotate: _elm_lang$core$Maybe$Nothing, rotateX: _elm_lang$core$Maybe$Nothing, rotateY: _elm_lang$core$Maybe$Nothing, rotateZ: _elm_lang$core$Maybe$Nothing, scale: _elm_lang$core$Maybe$Nothing, scaleX: _elm_lang$core$Maybe$Nothing, scaleY: _elm_lang$core$Maybe$Nothing, translateX: _elm_lang$core$Maybe$Nothing, translateY: _elm_lang$core$Maybe$Nothing, skewX: _elm_lang$core$Maybe$Nothing, skewY: _elm_lang$core$Maybe$Nothing};
 var _ohanhi$elm_native_ui$NativeUi_Style$encodeValue = function (value) {
@@ -7861,13 +7862,13 @@ var _ohanhi$elm_native_ui$NativeUi$Node = {ctor: 'Node'};
 var _ohanhi$elm_native_ui$NativeUi$Property = {ctor: 'Property'};
 var _ohanhi$elm_native_ui$NativeUi$NativeComponent = {ctor: 'NativeComponent'};
 
-const _ohanhi$elm_native_ui$Native_NativeUi_Elements = function () {
+const _ohanhi$elm_native_ui$Native_NativeUi_Elements = (function() {
   return {
-    navigationCardStack: require("NavigationCardStack"),
-    navigationHeader: require("NavigationHeader"),
-    navigationHeaderTitle: require("NavigationHeaderTitle"),
+    navigationCardStack: require('NavigationCardStack'),
+    navigationHeader: require('NavigationHeader'),
+    navigationHeaderTitle: require('NavigationHeaderTitle')
   };
-}();
+})();
 
 var _ohanhi$elm_native_ui$NativeUi_Elements$navigationHeaderTitle = A2(_ohanhi$elm_native_ui$NativeUi$customNode, 'NavigationHeaderTitle', _ohanhi$elm_native_ui$Native_NativeUi_Elements.navigationHeaderTitle);
 var _ohanhi$elm_native_ui$NativeUi_Elements$navigationHeader = A2(_ohanhi$elm_native_ui$NativeUi$customNode, 'NavigationHeader', _ohanhi$elm_native_ui$Native_NativeUi_Elements.navigationHeader);
@@ -8492,21 +8493,96 @@ var _ohanhi$elm_native_ui$NativeUi_Properties$TabBarItemPositioningAuto = {ctor:
 var _ohanhi$elm_native_ui$NativeUi_Properties$TabBarItemPositioningCenter = {ctor: 'TabBarItemPositioningCenter'};
 var _ohanhi$elm_native_ui$NativeUi_Properties$TabBarItemPositioningFill = {ctor: 'TabBarItemPositioningFill'};
 
-const _ohanhi$elm_native_ui$Native_NativeUi_Dimensions = function () {
+const _ohanhi$elm_native_ui$Native_NativeUi_Dimensions = (function() {
   const { Dimensions } = require('react-native');
   const { height, width } = Dimensions.get('window');
 
   return {
     windowHeight: height,
-    windowWidth: width,
+    windowWidth: width
   };
-}();
+})();
 
 var _ohanhi$elm_native_ui$NativeApi_Dimensions$WindowSize = F2(
 	function (a, b) {
 		return {height: a, width: b};
 	});
 var _ohanhi$elm_native_ui$NativeApi_Dimensions$window = A2(_ohanhi$elm_native_ui$NativeApi_Dimensions$WindowSize, _ohanhi$elm_native_ui$Native_NativeUi_Dimensions.windowHeight, _ohanhi$elm_native_ui$Native_NativeUi_Dimensions.windowWidth);
+
+var _ohanhi$elm_native_ui$Native_SpinKit = (function() {
+  var SpinKit = require('react-native-spinkit');
+
+  console.log(SpinKit);
+
+  return {
+    view: SpinKit
+  };
+})();
+
+var _ohanhi$elm_native_ui$SpinKit$size = function (_p0) {
+	return A2(
+		_ohanhi$elm_native_ui$NativeUi$property,
+		'size',
+		_elm_lang$core$Json_Encode$int(_p0));
+};
+var _ohanhi$elm_native_ui$SpinKit$color = function (_p1) {
+	return A2(
+		_ohanhi$elm_native_ui$NativeUi$property,
+		'color',
+		_elm_lang$core$Json_Encode$string(_p1));
+};
+var _ohanhi$elm_native_ui$SpinKit$isVisible = function (_p2) {
+	return A2(
+		_ohanhi$elm_native_ui$NativeUi$property,
+		'isVisible',
+		_elm_lang$core$Json_Encode$bool(_p2));
+};
+var _ohanhi$elm_native_ui$SpinKit$spinner = A2(_ohanhi$elm_native_ui$NativeUi$customNode, 'SpinKit', _ohanhi$elm_native_ui$Native_SpinKit.view);
+var _ohanhi$elm_native_ui$SpinKit$spinnerTypeToValue = function (sType) {
+	var _p3 = sType;
+	switch (_p3.ctor) {
+		case 'CircleFlip':
+			return 'CircleFlip';
+		case 'Bounce':
+			return 'Bounce';
+		case 'Wave':
+			return 'Wave';
+		case 'WanderingCubes':
+			return 'WanderingCubes';
+		case 'Pulse':
+			return 'Pulse';
+		case 'ChasingDots':
+			return 'ChasingDots';
+		case 'ThreeBounce':
+			return 'ThreeBounce';
+		case 'Circle':
+			return 'Circle';
+		case 'CubeGrid9':
+			return '9CubeGrid';
+		case 'FadingCircle':
+			return 'FadingCircle';
+		default:
+			return 'FadingCircleAlt';
+	}
+};
+var _ohanhi$elm_native_ui$SpinKit$spinnerType = function (_p4) {
+	return A2(
+		_ohanhi$elm_native_ui$NativeUi$property,
+		'type',
+		_elm_lang$core$Json_Encode$string(
+			_ohanhi$elm_native_ui$SpinKit$spinnerTypeToValue(_p4)));
+};
+var _ohanhi$elm_native_ui$SpinKit$FadingCircleAlt = {ctor: 'FadingCircleAlt'};
+var _ohanhi$elm_native_ui$SpinKit$FadingCircle = {ctor: 'FadingCircle'};
+var _ohanhi$elm_native_ui$SpinKit$CubeGrid9 = {ctor: 'CubeGrid9'};
+var _ohanhi$elm_native_ui$SpinKit$Circle = {ctor: 'Circle'};
+var _ohanhi$elm_native_ui$SpinKit$ThreeBounce = {ctor: 'ThreeBounce'};
+var _ohanhi$elm_native_ui$SpinKit$ChasingDots = {ctor: 'ChasingDots'};
+var _ohanhi$elm_native_ui$SpinKit$Pulse = {ctor: 'Pulse'};
+var _ohanhi$elm_native_ui$SpinKit$WanderingCubes = {ctor: 'WanderingCubes'};
+var _ohanhi$elm_native_ui$SpinKit$Wave = {ctor: 'Wave'};
+var _ohanhi$elm_native_ui$SpinKit$Bounce = {ctor: 'Bounce'};
+var _ohanhi$elm_native_ui$SpinKit$CircleFlip = {ctor: 'CircleFlip'};
 
 var _ohanhi$elm_native_ui$App_View$errorView = function (err) {
 	return A2(
@@ -8553,12 +8629,8 @@ var _ohanhi$elm_native_ui$App_View$loadingView = A2(
 				_0: _ohanhi$elm_native_ui$NativeUi_Style$alignItems('center'),
 				_1: {
 					ctor: '::',
-					_0: _ohanhi$elm_native_ui$NativeUi_Style$backgroundColor('yellow'),
-					_1: {
-						ctor: '::',
-						_0: _ohanhi$elm_native_ui$NativeUi_Style$width(_ohanhi$elm_native_ui$NativeApi_Dimensions$window.width),
-						_1: {ctor: '[]'}
-					}
+					_0: _ohanhi$elm_native_ui$NativeUi_Style$width(_ohanhi$elm_native_ui$NativeApi_Dimensions$window.width),
+					_1: {ctor: '[]'}
 				}
 			}),
 		_1: {ctor: '[]'}
@@ -8566,13 +8638,25 @@ var _ohanhi$elm_native_ui$App_View$loadingView = A2(
 	{
 		ctor: '::',
 		_0: A2(
-			_ohanhi$elm_native_ui$NativeUi_Elements$text,
-			{ctor: '[]'},
+			_ohanhi$elm_native_ui$SpinKit$spinner,
 			{
 				ctor: '::',
-				_0: _ohanhi$elm_native_ui$NativeUi$string('Loading'),
-				_1: {ctor: '[]'}
-			}),
+				_0: _ohanhi$elm_native_ui$SpinKit$spinnerType(_ohanhi$elm_native_ui$SpinKit$Bounce),
+				_1: {
+					ctor: '::',
+					_0: _ohanhi$elm_native_ui$SpinKit$isVisible(true),
+					_1: {
+						ctor: '::',
+						_0: _ohanhi$elm_native_ui$SpinKit$color('black'),
+						_1: {
+							ctor: '::',
+							_0: _ohanhi$elm_native_ui$SpinKit$size(80),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			},
+			{ctor: '[]'}),
 		_1: {ctor: '[]'}
 	});
 var _ohanhi$elm_native_ui$App_View$footer = A2(
@@ -8645,21 +8729,17 @@ var _ohanhi$elm_native_ui$App_View$header = function () {
 							_0: _ohanhi$elm_native_ui$NativeUi_Style$flexDirection('row'),
 							_1: {
 								ctor: '::',
-								_0: _ohanhi$elm_native_ui$NativeUi_Style$alignItems('flex-start'),
+								_0: _ohanhi$elm_native_ui$NativeUi_Style$justifyContent('space-between'),
 								_1: {
 									ctor: '::',
-									_0: _ohanhi$elm_native_ui$NativeUi_Style$justifyContent('space-between'),
+									_0: _ohanhi$elm_native_ui$NativeUi_Style$marginTop(30),
 									_1: {
 										ctor: '::',
-										_0: _ohanhi$elm_native_ui$NativeUi_Style$marginTop(30),
+										_0: _ohanhi$elm_native_ui$NativeUi_Style$padding(5),
 										_1: {
 											ctor: '::',
-											_0: _ohanhi$elm_native_ui$NativeUi_Style$padding(5),
-											_1: {
-												ctor: '::',
-												_0: _ohanhi$elm_native_ui$NativeUi_Style$alignSelf('stretch'),
-												_1: {ctor: '[]'}
-											}
+											_0: _ohanhi$elm_native_ui$NativeUi_Style$alignSelf('stretch'),
+											_1: {ctor: '[]'}
 										}
 									}
 								}
@@ -8707,8 +8787,12 @@ var _ohanhi$elm_native_ui$App_View$header = function () {
 									_0: _ohanhi$elm_native_ui$NativeUi_Style$justifyContent('space-around'),
 									_1: {
 										ctor: '::',
-										_0: _ohanhi$elm_native_ui$NativeUi_Style$alignSelf('stretch'),
-										_1: {ctor: '[]'}
+										_0: _ohanhi$elm_native_ui$NativeUi_Style$flex(1),
+										_1: {
+											ctor: '::',
+											_0: _ohanhi$elm_native_ui$NativeUi_Style$alignSelf('stretch'),
+											_1: {ctor: '[]'}
+										}
 									}
 								}
 							}),
@@ -8723,15 +8807,11 @@ var _ohanhi$elm_native_ui$App_View$header = function () {
 								_0: _ohanhi$elm_native_ui$NativeUi$style(
 									{
 										ctor: '::',
-										_0: _ohanhi$elm_native_ui$NativeUi_Style$textAlign('center'),
+										_0: _ohanhi$elm_native_ui$NativeUi_Style$color('#63b4c9'),
 										_1: {
 											ctor: '::',
-											_0: _ohanhi$elm_native_ui$NativeUi_Style$color('#63b4c9'),
-											_1: {
-												ctor: '::',
-												_0: _ohanhi$elm_native_ui$NativeUi_Style$fontSize(24),
-												_1: {ctor: '[]'}
-											}
+											_0: _ohanhi$elm_native_ui$NativeUi_Style$fontSize(24),
+											_1: {ctor: '[]'}
 										}
 									}),
 								_1: {ctor: '[]'}
@@ -8761,12 +8841,8 @@ var _ohanhi$elm_native_ui$App_View$talkView = function (talk) {
 						_0: _ohanhi$elm_native_ui$NativeUi_Style$justifyContent('space-around'),
 						_1: {
 							ctor: '::',
-							_0: _ohanhi$elm_native_ui$NativeUi_Style$backgroundColor('yellow'),
-							_1: {
-								ctor: '::',
-								_0: _ohanhi$elm_native_ui$NativeUi_Style$width(_ohanhi$elm_native_ui$NativeApi_Dimensions$window.width),
-								_1: {ctor: '[]'}
-							}
+							_0: _ohanhi$elm_native_ui$NativeUi_Style$width(_ohanhi$elm_native_ui$NativeApi_Dimensions$window.width),
+							_1: {ctor: '[]'}
 						}
 					}
 				}),
@@ -8812,12 +8888,8 @@ var _ohanhi$elm_native_ui$App_View$breakTimeView = function (item) {
 						_0: _ohanhi$elm_native_ui$NativeUi_Style$justifyContent('space-around'),
 						_1: {
 							ctor: '::',
-							_0: _ohanhi$elm_native_ui$NativeUi_Style$backgroundColor('green'),
-							_1: {
-								ctor: '::',
-								_0: _ohanhi$elm_native_ui$NativeUi_Style$width(_ohanhi$elm_native_ui$NativeApi_Dimensions$window.width),
-								_1: {ctor: '[]'}
-							}
+							_0: _ohanhi$elm_native_ui$NativeUi_Style$width(_ohanhi$elm_native_ui$NativeApi_Dimensions$window.width),
+							_1: {ctor: '[]'}
 						}
 					}
 				}),
